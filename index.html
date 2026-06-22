@@ -31,9 +31,21 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background: url('https://preview.redd.it/yall-like-my-grandmother-art-v0-qebgd53qup7h1.jpeg?width=1920&format=pjpg&auto=webp&s=240f78a26530d7a15edd5897245973a9e50c224d') center top / cover no-repeat;
     align-items: center;
     justify-content: center;
+}
+
+#bg {
+    position: fixed;
+    inset: -5%;
+
+    z-index: -2;
+
+    background:
+        url('https://preview.redd.it/yall-like-my-grandmother-art-v0-qebgd53qup7h1.jpeg?width=1920&format=pjpg&auto=webp&s=240f78a26530d7a15edd5897245973a9e50c224d')
+        center center / cover no-repeat;
+
+    transition: transform 0.15s ease-out;
 }
 
 body::before {
@@ -312,9 +324,17 @@ body::before {
     pointer-events: none;
     transition: all 0.4s ease;
 }
+
+#bg,
+#bearTrap {
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1); /* this so the beartrap and bg move together in the parallax effect */
+}
+
 </style>
 </head>
 <body>
+<div id="bg"></div>
+
 <audio id="menuMusic" loop> <!-- main menu music -->
     <source src="https://www.image2url.com/r2/default/audio/1782163629626-5d13d2b5-e679-4fd6-99c6-03118956ecd2.mp3" type="audio/mpeg">
 </audio>
@@ -337,6 +357,8 @@ body::before {
     <i class="fa-solid fa-play"></i>
 </button>
 
+<img id="bearTrap" src="https://i.imgur.com/EH1gYFk.png" alt="Bear Trap">
+
 <div class="info">
     <h3>Version notes</h3>
         <ul>
@@ -345,12 +367,6 @@ body::before {
             <li><p>You actually have 5 days now</p></li>
         </ul>
 </div>
-
-<img
-    id="bearTrap"
-    src="https://i.imgur.com/EH1gYFk.png"
-    alt="Bear Trap"
->
 
 <div id="embedContainer">
     <object data="https://app-259805.games.s3.yandex.net/259805/fadb3yakgje68vxwmy7a1khmb3vj9vxc_brotli/index.html?sdk=%2Fsdk%2F_%2Fv2.97c96d6acac215f69e1d.js#origin=https%3A%2F%2Fyandex.com&app-id=259805&device-type=desktop"></object>
@@ -400,6 +416,20 @@ document.getElementById("launchBtn").addEventListener("click", () => {
 
     document.getElementById("embedContainer").style.display = "block";
 });
+
+// background movement
+const bg = document.getElementById("bg");
+const trapmove = document.getElementById("bearTrap");
+
+document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+    bg.style.transform = `translate(${-x}px, ${-y}px)`;
+
+    trapmove.style.transform = `translate(${-x}px, ${-y}px)`;
+});
+
 </script>
 
 </body>
