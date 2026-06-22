@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Granny 1.6</title>
+
+<link rel="icon" href="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap'); /* saira font */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url("https://i.imgur.com/hTMBYsU.png"), default!important;
+    user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Saira, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: url('https://preview.redd.it/yall-like-my-grandmother-art-v0-qebgd53qup7h1.jpeg?width=1920&format=pjpg&auto=webp&s=240f78a26530d7a15edd5897245973a9e50c224d') center top / cover no-repeat;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.play-btn {
+    position: relative;
+    z-index: 2;
+
+    width: 90px;
+    height: 90px;
+
+    border: 2px solid #2ecc71;
+    border-radius: 50%;
+
+    background: #2f2f2f;
+    color: #2ecc71;
+
+    font-size: 34px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 rgba(46,204,113,0);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(46,204,113,.8);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(46,204,113,0);
+    }
+}
+
+.play-btn:hover {
+    transform: scale(1.08);
+    background: #3b3b3b;
+    box-shadow: 0 0 25px rgba(46, 204, 113, 0.65);
+}
+
+#embedContainer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+}
+
+#embedContainer object { /* im using object bc embed doesnt play sound */
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#fog {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#fog::before,
+#fog::after {
+    content: "";
+    position: absolute;
+    width: 250%;
+    height: 250%;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 15%),
+        radial-gradient(circle at 60% 50%, rgba(255,255,255,0.06), transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 18%);
+
+    filter: blur(60px);
+
+    animation: drift 45s linear infinite;
+}
+
+#fog::after {
+    animation-duration: 70s;
+    animation-direction: reverse;
+    opacity: 0.7;
+}
+
+@keyframes drift {
+    from {
+        transform: translate(-20%, -10%);
+    }
+
+    to {
+        transform: translate(10%, 10%);
+    }
+}
+
+.info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    z-index: 2;
+
+    padding: 15px 20px;
+    min-width: 220px;
+
+    background: rgba(20, 20, 20, 0.05);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.info h3 {
+    margin-bottom: 10px;
+    color: #2ecc71;
+    font-size: 1.1rem;
+}
+
+.info p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.granny-img {
+    position: relative;
+    z-index: 2;
+
+    transition: all 0.4s ease;
+}
+
+.granny-img:hover {
+    animation: rotate 3s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-5deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+</style>
+</head>
+<body>
+<div id="fog"></div>
+
+<img class="granny-img" src="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q" style="width: 88px; height: 88px;">
+<br>
+<h1>Play Granny 1.6</h1>
+<br>
+<button class="play-btn" id="launchBtn">
+    <i class="fa-solid fa-play"></i>
+</button>
+
+<div class="info">
+    <h3>Granny 1.6 Notes</h3>
+    <p>Faster crouch movement</p>
+    <p>You can hide under tables and <br> inside cabinets now</p>
+    <p>You actually have 5 days now</p>
+</div>
+
+<div id="embedContainer">
+    <object data="https://app-259805.games.s3.yandex.net/259805/fadb3yakgje68vxwmy7a1khmb3vj9vxc_brotli/index.html?sdk=%2Fsdk%2F_%2Fv2.97c96d6acac215f69e1d.js#origin=https%3A%2F%2Fyandex.com&app-id=259805&device-type=desktop"></object>
+</div>
+
+<script>
+document.getElementById("launchBtn").addEventListener("click", () => {
+    document.getElementById("embedContainer").style.display = "block";
+});
+</script>
+
+</body>
+</html>
