@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url("https://i.imgur.com/hTMBYsU.png"), default!important;
+    cursor: url("https://i.imgur.com/RitsNug.png"), default!important;
     user-select: none;
 }
 
@@ -63,10 +63,31 @@ body::before {
         box-shadow 0.25s ease,
         background 0.25s ease;
 
-    animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
+.play-btn i {
+    transition: transform 0.3s ease;
+}
+
+.play-btn:hover i {
+    animation: playArrow 0.6s ease-in-out infinite;
+}
+
+@keyframes playArrow {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(8px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* @keyframes pulse {
     0% {
         box-shadow: 0 0 0 rgba(46,204,113,0);
     }
@@ -78,7 +99,7 @@ body::before {
     100% {
         box-shadow: 0 0 0 rgba(46,204,113,0);
     }
-}
+} */
 
 .play-btn:hover {
     transform: scale(1.08);
@@ -143,7 +164,7 @@ body::before {
 .info {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
 
     z-index: 2;
 
@@ -171,6 +192,10 @@ body::before {
     margin: 4px 0;
     font-size: 0.9rem;
     opacity: 0.9;
+}
+
+.info li {
+    margin-left: 10px;
 }
 
 .granny-img {
@@ -205,10 +230,104 @@ body::before {
         transform: rotate(-5deg);
     }
 }
+
+#bearTrap {
+    position: fixed;
+
+    bottom: 80px;
+    left: 700px;
+
+    width: 120px;
+
+    z-index: 2;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+
+    cursor: url("https://i.imgur.com/RitsNug.png"), 16 16, default!important;
+
+}
+
+#bearTrap:hover {
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    cursor: url("https://i.imgur.com/RitsNug.png"), 16 16, default!important;
+}
+
+#bearTrap.closed {
+    /* filler */
+}
+
+@keyframes trapSnap {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#musicPrompt {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 99999;
+
+    font-size: 1rem;
+    letter-spacing: 2px;
+
+    color: #fff;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.8),
+        0 0 15px rgba(255,255,255,0.5);
+
+    animation: sway 2s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0% {
+        transform: translateX(-50%) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateX(-50%) rotate(3deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(-3deg);
+    }
+}
+
+#musicPrompt.hide {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
 </style>
 </head>
 <body>
+<audio id="menuMusic" loop> <!-- main menu music -->
+    <source src="main-menu.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="beartrap" preload="auto"> <!-- beartrap sound -->
+    <source src="beartrap.wav" type="audio/mpeg">
+</audio>
+
 <div id="fog"></div>
+
+<div id="musicPrompt">
+    Click anywhere to activate music
+</div>
 
 <img class="granny-img" src="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q" style="width: 88px; height: 88px;">
 <br>
@@ -219,18 +338,66 @@ body::before {
 </button>
 
 <div class="info">
-    <h3>Granny 1.6 Notes</h3>
-    <p>Faster crouch movement</p>
-    <p>You can hide under tables and <br> inside cabinets now</p>
-    <p>You actually have 5 days now</p>
+    <h3>Version notes</h3>
+        <ul>
+            <li><p>Faster crouch movement</p></li>
+            <li><p>You can hide under tables and <br> inside cabinets now</p></li>
+            <li><p>You actually have 5 days now</p></li>
+        </ul>
 </div>
+
+<img
+    id="bearTrap"
+    src="https://static.wikia.nocookie.net/granny/images/a/ab/Beartrap_new_transp.png/revision/latest/scale-to-width-down/1000?cb=20240303113737"
+    alt="Bear Trap"
+>
 
 <div id="embedContainer">
     <object data="https://app-259805.games.s3.yandex.net/259805/fadb3yakgje68vxwmy7a1khmb3vj9vxc_brotli/index.html?sdk=%2Fsdk%2F_%2Fv2.97c96d6acac215f69e1d.js#origin=https%3A%2F%2Fyandex.com&app-id=259805&device-type=desktop"></object>
 </div>
 
-<script>
+<script> 
+// open game embed
 document.getElementById("launchBtn").addEventListener("click", () => {
+    document.getElementById("embedContainer").style.display = "block";
+});
+
+// beartrap
+const trap = document.getElementById("bearTrap");
+beartrap.volume = 1; 
+
+trap.addEventListener("click", () => {
+    if (trap.classList.contains("closed")) return;
+
+    beartrap.currentTime = 0;
+    beartrap.play();
+
+    trap.src =
+        "https://static.wikia.nocookie.net/granny/images/5/5c/BearTrapClosedReady2.png/revision/latest?cb=20251206133613";
+
+    trap.style.width = "75px";
+    trap.style.left = "723px";
+
+    trap.classList.add("closed");
+});
+
+// main menu music
+const menuMusic = document.getElementById("menuMusic");
+
+document.addEventListener("click", () => {
+    menuMusic.play();
+
+    musicPrompt.classList.add("hide");
+
+    setTimeout(() => {
+        musicPrompt.remove();
+    }, 400);
+}, { once: true });
+
+document.getElementById("launchBtn").addEventListener("click", () => {
+    menuMusic.pause();
+    menuMusic.currentTime = 0;
+
     document.getElementById("embedContainer").style.display = "block";
 });
 </script>
