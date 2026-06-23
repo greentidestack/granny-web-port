@@ -1,6 +1,6 @@
 # Granny 1.6 Web port
-I did not port the game, credit goes to Yandex: [Granny Original](https://yandex.com/games/app/granny-original-259805)
+I did not port the game, credits: [Yandex](https://yandex.com/games/app/granny-original-259805)  [Original](https://grannyfree.io/play/granny/)  [PC](https://granny1.io/granny.embed)
 
-Granny 1.6 with an interactive main menu screen. Not much else to say
+A launcher for different versions of web ported Granny 1
 
-Features: Clickable beartrap, parallax background mouse effect, music
+Features: Interactive main menu screen, music, info about the versions, downloadable as a single HTML file with a very small size
