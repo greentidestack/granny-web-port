@@ -1,3 +1,4 @@
+<!-- granny :)))) ❤ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap'); /* saira font */
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap'); 
 
 * {
     margin: 0;
@@ -99,7 +100,7 @@ body::before {
     }
 }
 
-/* @keyframes pulse {
+/* @keyframes pulse { pulse sucks im sorry
     0% {
         box-shadow: 0 0 0 rgba(46,204,113,0);
     }
@@ -126,7 +127,7 @@ body::before {
     display: none;
 }
 
-#embedContainer object { /* im using object bc embed doesnt play sound */
+#embedContainer object { /* object data plays sound, embed src doesnt */
     width: 100%;
     height: 100%;
     border: none;
@@ -202,7 +203,7 @@ body::before {
 
 .info p {
     margin: 4px 0;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     opacity: 0.9;
 }
 
@@ -267,7 +268,7 @@ body::before {
 }
 
 #bearTrap.closed {
-    /* filler */
+    /* Filler */
 }
 
 @keyframes trapSnap {
@@ -327,7 +328,38 @@ body::before {
 
 #bg,
 #bearTrap {
-    transition: transform 0.3s cubic-bezier(.22,.61,.36,1); /* this so the beartrap and bg move together in the parallax effect */
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1); /* Maks the beartrap and the background move together in the parallax mouse effect */
+}
+
+.version-select {
+    width: 100px;
+    height: 32px;
+    font-size: .85rem;
+    background: #2f2f2f;
+    border-radius: 10px;
+    color: #2ecc71;
+    font-weight: bold;
+    border: 2px solid white;
+    transition: 0.2s all ease-in-out;
+    outline: none;
+    font-family: Saira;
+}
+
+.version-select:hover {
+    border-color: #2ecc71;
+}
+
+.version-select:focus {
+    border-color: #2ecc71;
+}
+
+.launch-row {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 </style>
@@ -335,11 +367,11 @@ body::before {
 <body>
 <div id="bg"></div>
 
-<audio id="menuMusic" loop> <!-- main menu music -->
+<audio id="menuMusic" loop> <!-- Main menu music -->
     <source src="https://www.image2url.com/r2/default/audio/1782163629626-5d13d2b5-e679-4fd6-99c6-03118956ecd2.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="beartrap" preload="auto"> <!-- beartrap sound -->
+<audio id="beartrap" preload="auto"> <!-- Beartrp sound -->
     <source src="https://www.image2url.com/r2/default/audio/1782163592949-7fc0cf5c-e9b1-4764-80e4-9bdcf467656a.wav" type="audio/mpeg">
 </audio>
 
@@ -351,20 +383,30 @@ body::before {
 
 <img class="granny-img" src="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q" style="width: 88px; height: 88px;">
 <br>
-<h1>Play Granny 1.6</h1>
+<h1>Granny Launcher Online</h1>
 <br>
-<button class="play-btn" id="launchBtn">
-    <i class="fa-solid fa-play"></i>
-</button>
+<br>
+
+<div class="launch-row">
+    <select id="versionSelect" class="version-select">
+        <option value="yandex">Yandex</option>
+        <option value="original">Original</option>
+        <option value="pcport">PC Web Port</option>
+    </select>
+
+    <button class="play-btn" id="launchBtn">
+        <i class="fa-solid fa-play"></i>
+    </button>
+</div>
 
 <img id="bearTrap" src="https://i.imgur.com/EH1gYFk.png" alt="Bear Trap">
 
 <div class="info">
     <h3>Version notes</h3>
         <ul>
-            <li><p>Faster crouch movement</p></li>
-            <li><p>You can hide under tables and <br> inside cabinets now</p></li>
-            <li><p>You actually have 5 days now</p></li>
+            <li><p>Yandex: *recommended* <br>Faster crouch movement,<br>crouch under tables and cabinets<br>and you have 5 days</p></li>
+            <li><p>Original: No ads or bloat, <br>however no features of Yandex</p></li>
+            <li><p>PC Port: Granny PC version but <br>granny is very bugged <br>unfortunately</p></li>
         </ul>
 </div>
 
@@ -373,12 +415,30 @@ body::before {
 </div>
 
 <script> 
-// open game embed
+// Open selected game embed
 document.getElementById("launchBtn").addEventListener("click", () => {
+    const version = document.getElementById("versionSelect").value;
+    const gameFrame = document.querySelector("#embedContainer object");
+
+    if (version === "yandex") {
+        gameFrame.data =
+            "https://app-259805.games.s3.yandex.net/259805/fadb3yakgje68vxwmy7a1khmb3vj9vxc_brotli/index.html?sdk=%2Fsdk%2F_%2Fv2.97c96d6acac215f69e1d.js#origin=https%3A%2F%2Fyandex.com&app-id=259805&device-type=desktop";
+    }
+
+    if (version === "original") {
+        gameFrame.data =
+            "https://a.luminsdk.com/g/1782245938-zvb9IWFpeBv1Yjnr2wvlKNlEiJz1KQwrELC6eT839lU/selenite/granny1/index.html";
+    }
+
+    if (version === "pcport") {
+        gameFrame.data = 
+            "https://granny1.io/granny.embed";
+    }
+
     document.getElementById("embedContainer").style.display = "block";
 });
 
-// beartrap
+// Beatrap click
 const trap = document.getElementById("bearTrap");
 beartrap.volume = 1; 
 
@@ -397,7 +457,7 @@ trap.addEventListener("click", () => {
     trap.classList.add("closed");
 });
 
-// main menu music
+// Main menu music
 const menuMusic = document.getElementById("menuMusic");
 
 document.addEventListener("click", () => {
@@ -417,13 +477,13 @@ document.getElementById("launchBtn").addEventListener("click", () => {
     document.getElementById("embedContainer").style.display = "block";
 });
 
-// background movement
+// Parallax effect
 const bg = document.getElementById("bg");
 const trapmove = document.getElementById("bearTrap");
 
 document.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    const x = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y = (e.clientY / window.innerHeight - 0.5) * 15;
 
     bg.style.transform = `translate(${-x}px, ${-y}px)`;
 
