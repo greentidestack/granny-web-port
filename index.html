@@ -405,8 +405,8 @@ body::before {
     <h3>Version notes</h3>
         <ul>
             <li><p>Yandex: *recommended* <br>Faster crouch movement,<br>crouch under tables and cabinets<br>and you have 5 days</p></li>
-            <li><p>Original: No ads or bloat, <br>however no features of Yandex</p></li>
-            <li><p>PC Port: Granny PC version but <br>granny is very bugged <br>unfortunately</p></li>
+            <li><p>Original: No ads or bloat, <br>however no features of Yandex <br>except 5 days</p></li>
+            <li><p>PC Port: Granny PC version 1.7, <br> great graphics but comes with<br> a few bugs and less audio</p></li>
         </ul>
 </div>
 
@@ -428,11 +428,15 @@ document.getElementById("launchBtn").addEventListener("click", () => {
     if (version === "original") {
         gameFrame.data =
             "http://granny.gg/content/uploads/granny/index.html";
+            // old links i used:
+            // https://grannyfree.io/play/granny/ original, but its an iframe
+            // https://a.luminsdk.com/g/1782245938-zvb9IWFpeBv1Yjnr2wvlKNlEiJz1KQwrELC6eT839lU/selenite/granny1/index.html doesnt work bc of cloudflare
     }
 
     if (version === "pcport") {
         gameFrame.data = 
-            "https://granny1.io/granny.embed";
+            "https://greentidestack.github.io/unexpectedpillow2323";
+            // https://granny1.io/granny.embed
     }
 
     document.getElementById("embedContainer").style.display = "block";
