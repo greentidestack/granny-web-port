@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Granny 1.6</title>
+<title>Granny Launcher</title>
 
 <link rel="icon" href="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,7 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url("https://i.imgur.com/RitsNug.png"), default!important;
+    cursor: url("https://i.imgur.com/1NgHZDZ.png") 16 16, default!important;
     user-select: none;
 }
 
@@ -39,13 +39,10 @@ body {
 #bg {
     position: fixed;
     inset: -5%;
-
     z-index: -2;
-
     background:
         url('https://preview.redd.it/yall-like-my-grandmother-art-v0-qebgd53qup7h1.jpeg?width=1920&format=pjpg&auto=webp&s=240f78a26530d7a15edd5897245973a9e50c224d')
         center center / cover no-repeat;
-
     transition: transform 0.15s ease-out;
 }
 
@@ -59,18 +56,13 @@ body::before {
 .play-btn {
     position: relative;
     z-index: 2;
-
     width: 90px;
     height: 90px;
-
     border: 2px solid #2ecc71;
     border-radius: 50%;
-
     background: #2f2f2f;
     color: #2ecc71;
-
     font-size: 34px;
-
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
@@ -90,29 +82,13 @@ body::before {
     0% {
         transform: translateX(0);
     }
-
     50% {
         transform: translateX(8px);
     }
-
     100% {
         transform: translateX(0);
     }
 }
-
-/* @keyframes pulse { pulse sucks im sorry
-    0% {
-        box-shadow: 0 0 0 rgba(46,204,113,0);
-    }
-
-    50% {
-        box-shadow: 0 0 30px rgba(46,204,113,.8);
-    }
-
-    100% {
-        box-shadow: 0 0 0 rgba(46,204,113,0);
-    }
-} */
 
 .play-btn:hover {
     transform: scale(1.08);
@@ -147,14 +123,12 @@ body::before {
     position: absolute;
     width: 250%;
     height: 250%;
-
     background:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 15%),
         radial-gradient(circle at 60% 50%, rgba(255,255,255,0.06), transparent 20%),
         radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 18%);
 
     filter: blur(60px);
-
     animation: drift 45s linear infinite;
 }
 
@@ -168,53 +142,14 @@ body::before {
     from {
         transform: translate(-20%, -10%);
     }
-
     to {
         transform: translate(10%, 10%);
     }
 }
 
-.info {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-
-    z-index: 2;
-
-    padding: 15px 20px;
-    min-width: 220px;
-
-    background: rgba(20, 20, 20, 0.05);
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(15px);
-
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-.info h3 {
-    margin-bottom: 10px;
-    color: #2ecc71;
-    font-size: 1.1rem;
-}
-
-.info p {
-    margin: 4px 0;
-    font-size: 0.7rem;
-    opacity: 0.9;
-}
-
-.info li {
-    margin-left: 10px;
-}
-
 .granny-img {
     position: relative;
     z-index: 2;
-
     transition: all 0.4s ease;
 }
 
@@ -226,19 +161,15 @@ body::before {
     0% {
         transform: rotate(-5deg);
     }
-
     25% {
         transform: rotate(5deg);
     }
-
     50% {
         transform: rotate(-5deg);
     }
-
     75% {
         transform: rotate(5deg);
     }
-
     100% {
         transform: rotate(-5deg);
     }
@@ -246,25 +177,17 @@ body::before {
 
 #bearTrap {
     position: fixed;
-
     bottom: 80px;
     left: 700px;
-
     width: 120px;
-
     z-index: 2;
-
     transition:
         transform 0.2s ease,
         filter 0.2s ease;
-
-    cursor: url("https://i.imgur.com/RitsNug.png"), 16 16, default!important;
-
 }
 
 #bearTrap:hover {
     filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-    cursor: url("https://i.imgur.com/RitsNug.png"), 16 16, default!important;
 }
 
 #bearTrap.closed {
@@ -275,11 +198,9 @@ body::before {
     0% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(0.9);
     }
-
     100% {
         transform: scale(1);
     }
@@ -290,14 +211,10 @@ body::before {
     top: 25px;
     left: 50%;
     transform: translateX(-50%);
-
     z-index: 99999;
-
     font-size: 1rem;
     letter-spacing: 2px;
-
     color: #fff;
-
     text-shadow:
         0 0 5px rgba(255,255,255,0.8),
         0 0 15px rgba(255,255,255,0.5);
@@ -309,11 +226,9 @@ body::before {
     0% {
         transform: translateX(-50%) rotate(-3deg);
     }
-
     50% {
         transform: translateX(-50%) rotate(3deg);
     }
-
     100% {
         transform: translateX(-50%) rotate(-3deg);
     }
@@ -331,6 +246,21 @@ body::before {
     transition: transform 0.3s cubic-bezier(.22,.61,.36,1); /* Maks the beartrap and the background move together in the parallax mouse effect */
 }
 
+.info {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    width: 250px;
+    padding: 15px;
+    background: rgba(20,20,20,0.01);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
 .version-select {
     width: 100px;
     height: 32px;
@@ -339,7 +269,7 @@ body::before {
     border-radius: 10px;
     color: #2ecc71;
     font-weight: bold;
-    border: 2px solid white;
+    border: 1.5px solid white;
     transition: 0.2s all ease-in-out;
     outline: none;
     font-family: Saira;
@@ -362,6 +292,38 @@ body::before {
     gap: 12px;
 }
 
+.version-note {
+    margin-top: 8px;
+}
+
+.version-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.version-header i {
+    color: #2ecc71;
+    transition: transform 0.25s ease;
+}
+
+.version-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-left: 18px;
+    transition:
+        max-height 0.3s ease,
+        opacity 0.3s ease;
+    font-size: 0.7rem;
+}
+
+.version-content.open {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 6px;
+}
 </style>
 </head>
 <body>
@@ -383,7 +345,7 @@ body::before {
 
 <img class="granny-img" src="https://play-lh.googleusercontent.com/P8BbkQ6m0eCYYAx2tXTESBiIDQ2RESsSQp6oD8ZAP35rmEjmaXHMboYT6P807sAnfcuskKTdYbTyH5R0GCFk8Q" style="width: 88px; height: 88px;">
 <br>
-<h1>Granny Launcher Online</h1>
+<h1>Granny Launcher</h1>
 <br>
 <br>
 
@@ -402,12 +364,40 @@ body::before {
 <img id="bearTrap" src="https://i.imgur.com/EH1gYFk.png" alt="Bear Trap">
 
 <div class="info">
-    <h3>Version notes</h3>
-        <ul>
-            <li><p>Yandex: *recommended* <br>Faster crouch movement,<br>crouch under tables and cabinets<br>and you have 5 days</p></li>
-            <li><p>Original: No ads or bloat, <br>however no features of Yandex <br>except 5 days</p></li>
-            <li><p>PC Port: Granny PC version 1.7, <br> great graphics but comes with<br> a few bugs and less audio</p></li>
-        </ul>
+    <h3 style="color: #2ecc71">Version Notes</h3>
+
+    <div class="version-note">
+        <div class="version-header">
+            <i class="fa-solid fa-caret-right"></i>
+            <span>Yandex</span>
+        </div>
+
+        <div class="version-content">
+            *recommended* Faster crouch movement and you can hide under tables and cabinets
+        </div>
+    </div>
+
+    <div class="version-note">
+        <div class="version-header">
+            <i class="fa-solid fa-caret-right"></i>
+            <span>Original</span>
+        </div>
+
+        <div class="version-content">
+            Stable version, no ads or bloat, however none of Yandex's features
+        </div>
+    </div>
+
+    <div class="version-note">
+        <div class="version-header">
+            <i class="fa-solid fa-caret-right"></i>
+            <span>PC Port</span>
+        </div>
+
+        <div class="version-content">
+            Granny PC Version 1.7, has much better graphics and is more updated but some bugs and less sound effects
+        </div>
+    </div>
 </div>
 
 <div id="embedContainer">
@@ -415,9 +405,23 @@ body::before {
 </div>
 
 <script> 
+// Local storage version saving
+const versionSelect = document.getElementById("versionSelect");
+const savedVersion = localStorage.getItem("SelectedVersion");
+
+if (savedVersion) {
+    versionSelect.value = savedVersion;
+}
+
+versionSelect.addEventListener("change", () => {
+    localStorage.setItem("SelectedVersion", versionSelect.value);
+});
+
 // Open selected game embed
 document.getElementById("launchBtn").addEventListener("click", () => {
     const version = document.getElementById("versionSelect").value;
+    localStorage.setItem("SelectedVersion", version);
+
     const gameFrame = document.querySelector("#embedContainer object");
 
     if (version === "yandex") {
@@ -464,7 +468,18 @@ trap.addEventListener("click", () => {
 // Main menu music
 const menuMusic = document.getElementById("menuMusic");
 
-document.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+
+    if (e.target.closest("#launchBtn")) {
+        musicPrompt.classList.add("hide");
+
+        setTimeout(() => {
+            musicPrompt.remove();
+        }, 400);
+
+        return;
+    }
+
     menuMusic.play();
 
     musicPrompt.classList.add("hide");
@@ -472,6 +487,7 @@ document.addEventListener("click", () => {
     setTimeout(() => {
         musicPrompt.remove();
     }, 400);
+
 }, { once: true });
 
 document.getElementById("launchBtn").addEventListener("click", () => {
@@ -494,6 +510,26 @@ document.addEventListener("mousemove", (e) => {
     trapmove.style.transform = `translate(${-x}px, ${-y}px)`;
 });
 
+
+// Dropdown menus for info box
+document.querySelectorAll(".version-header").forEach(header => {
+    header.addEventListener("click", () => {
+
+        const content =
+            header.nextElementSibling;
+
+        const icon =
+            header.querySelector("i");
+
+        content.classList.toggle("open");
+
+        if (content.classList.contains("open")) {
+            icon.style.transform = "rotate(90deg)";
+        } else {
+            icon.style.transform = "rotate(0deg)";
+        }
+    });
+});
 </script>
 
 </body>
